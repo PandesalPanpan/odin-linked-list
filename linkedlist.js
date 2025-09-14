@@ -58,6 +58,10 @@ export default class LinkedList {
     /* 
         Method: head();
     */
+   head = () => {
+        if (!this.linkedlistHead instanceof Node) throw new Error(`Head is invalid or has not been set`);
+        return this.linkedlistHead;
+   }
 
 
     /* 
@@ -80,6 +84,8 @@ export default class LinkedList {
         return this.linkedlistTail;
     }
 
+    isValidHead = () => {
+    }
 
 }
 const linkedlist = new LinkedList();
@@ -87,6 +93,6 @@ const linkedlist = new LinkedList();
 linkedlist.append('node1');
 linkedlist.prepend('node2');
 linkedlist.append('node3');
-console.log(linkedlist.size());
+console.log(linkedlist.head());
 console.log(`Head: ${linkedlist.linkedlistHead.value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
