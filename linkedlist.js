@@ -52,7 +52,9 @@ export default class LinkedList {
     */
     tail = () => {
         if (!this.linkedlistHead instanceof Node) throw new Error(`Tail cannot be found without a proper head`);
-        let currentNode = this.linkedlistHead;
+        if (this.linkedlistHead.nextNode == null) return this.linkedlistTail;
+
+        let currentNode = this.linkedlistTail ?? this.linkedlistHead;
         while (currentNode.nextNode != null) {
             currentNode = currentNode.nextNode;
         }
