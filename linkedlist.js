@@ -84,8 +84,25 @@ export default class LinkedList {
         return this.linkedlistTail;
     }
 
-    isValidHead = () => {
-    }
+    /* 
+        at(index) returns the node at that index
+    */
+   at = (index) => {
+        // Starting from the head
+        if (!this.linkedlistHead instanceof Node) throw new Error("No head exist to start index.");
+        if (this.size() - 1 < index) throw new Error(`${index} exceeds the size of the linked list.`);
+        
+        // Loop until at the index
+        let currentNode = this.linkedlistHead;
+        let nodeIndex = 0;
+        while (index != nodeIndex) {
+            currentNode = currentNode.nextNode;
+            nodeIndex++
+        }
+
+        return currentNode;
+
+   }
 
 }
 const linkedlist = new LinkedList();
@@ -93,6 +110,6 @@ const linkedlist = new LinkedList();
 linkedlist.append('node1');
 linkedlist.prepend('node2');
 linkedlist.append('node3');
-console.log(linkedlist.head());
+console.log(linkedlist.at(2));
 console.log(`Head: ${linkedlist.linkedlistHead.value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
