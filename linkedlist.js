@@ -41,6 +41,19 @@ export default class LinkedList {
         Returns the number total nodes
         iterate a count until it reaches the end
     */
+   size = () => {
+        if (!this.linkedlistHead instanceof Node) throw new Error(`Head is not an instance of node or is missing.`);
+        
+        // Start counting from the head until it reaches the tail the node with no next
+        let count = 0;
+        let currentNode = this.linkedlistHead;
+        while (currentNode != null && currentNode instanceof Node) {
+            currentNode = currentNode.nextNode;
+            count++;
+        }
+
+        return count;
+   }
 
     /* 
         Method: head();
@@ -52,8 +65,9 @@ export default class LinkedList {
     */
     tail = () => {
         if (!this.linkedlistHead instanceof Node) throw new Error(`Tail cannot be found without a proper head`);
-        if (this.linkedlistHead.nextNode == null) return this.linkedlistTail;
+        if (this.linkedlistTail instanceof Node && this.linkedlistTail.nextNode == null) return this.linkedlistTail;
 
+        // Find the tail if it doesn't exist yet
         let currentNode = this.linkedlistTail ?? this.linkedlistHead;
         while (currentNode.nextNode != null) {
             currentNode = currentNode.nextNode;
@@ -73,5 +87,6 @@ const linkedlist = new LinkedList();
 linkedlist.append('node1');
 linkedlist.prepend('node2');
 linkedlist.append('node3');
+console.log(linkedlist.size());
 console.log(`Head: ${linkedlist.linkedlistHead.value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
