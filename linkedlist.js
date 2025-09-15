@@ -15,7 +15,7 @@ export default class LinkedList {
         // Find the tail node with the next null
         const currentTail = this.tail();
         currentTail.nextNode = new Node(value);
-        
+
         // Return the created node
         return currentTail.nextNode;
     }
@@ -25,7 +25,7 @@ export default class LinkedList {
         Method: prepend(value)
         Adds a new node at the beginning
     */
-   prepend = (value) => {
+    prepend = (value) => {
         if (!this.linkedlistHead instanceof Node) {
             this.linkedlistHead = new Node(value);
         }
@@ -34,16 +34,16 @@ export default class LinkedList {
 
         this.linkedlistHead = newHead;
         return this.linkedlistHead;
-   } 
+    }
 
     /* 
         Method: size()
         Returns the number total nodes
         iterate a count until it reaches the end
     */
-   size = () => {
+    size = () => {
         if (!this.linkedlistHead instanceof Node) throw new Error(`Head is not an instance of node or is missing.`);
-        
+
         // Start counting from the head until it reaches the tail the node with no next
         let count = 0;
         let currentNode = this.linkedlistHead;
@@ -53,15 +53,15 @@ export default class LinkedList {
         }
 
         return count;
-   }
+    }
 
     /* 
         Method: head();
     */
-   head = () => {
+    head = () => {
         if (!this.linkedlistHead instanceof Node) throw new Error(`Head is invalid or has not been set`);
         return this.linkedlistHead;
-   }
+    }
 
 
     /* 
@@ -87,11 +87,11 @@ export default class LinkedList {
     /* 
         at(index) returns the node at that index
     */
-   at = (index) => {
+    at = (index) => {
         // Starting from the head
         if (!this.linkedlistHead instanceof Node) throw new Error("No head exist to start index.");
         if (this.size() - 1 < index) throw new Error(`${index} exceeds the size of the linked list.`);
-        
+
         // Loop until at the index
         let currentNode = this.linkedlistHead;
         let nodeIndex = 0;
@@ -102,14 +102,46 @@ export default class LinkedList {
 
         return currentNode;
 
-   }
+    }
+    /* 
+         pop method (relies on tail())
+         removes the tail
+         and updates the new tail
+    */
+    pop = () => {
+        // If the head does not exist, there's nothing to pop
+        if (!this.linkedlistHead instanceof Node) throw new Error(`No node to pop`);
+        // If the head does not have nextNode, pop it
+        if (this.linkedlistHead.nextNode == null) {
+            const removedNode = this.linkedlistHead;
+            this.linkedlistHead = null;
+            return removedNode;
+        }
+
+        // Start at the second node since we check 
+        // if head is the tail
+        // Save the previous node and the current node
+        let previousNode = this.linkedlistHead;
+        let currentNode = this.linkedlistHead.nextNode;
+        while (currentNode.nextNode != null) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+
+
+        previousNode.nextNode = null;
+        this.linkedlistTail = previousNode;
+        
+        return currentNode;
+    }
 
 }
 const linkedlist = new LinkedList();
 
 linkedlist.append('node1');
-linkedlist.prepend('node2');
+linkedlist.append('node2');
 linkedlist.append('node3');
-console.log(linkedlist.at(2));
 console.log(`Head: ${linkedlist.linkedlistHead.value}`);
+console.log(`Tail: ${linkedlist.tail().value}`);
+console.log(`Popping: ${linkedlist.pop().value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
