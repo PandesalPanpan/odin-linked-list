@@ -184,7 +184,7 @@ export default class LinkedList {
         let currentNode = this.linkedlistHead;
         let result = ""
         while (currentNode != null) {
-            result += `(${currentNode.value}) -> `; 
+            result += `( ${currentNode.value} ) -> `; 
             currentNode = currentNode.nextNode; 
         }
 
@@ -193,7 +193,7 @@ export default class LinkedList {
     }
 
 }
-const linkedlist = new LinkedList();
+/* const linkedlist = new LinkedList();
 
 linkedlist.append('node1');
 linkedlist.append('node2');
@@ -207,4 +207,4 @@ console.log(`contains('node2')): ${linkedlist.contains('node2')}`);
 console.log(`contains('node3')): ${linkedlist.contains('node3')}`);
 console.log(`find('node3'): ${linkedlist.find('node3')}`); // null
 console.log(`find('node2'): ${linkedlist.find('node2')}`); // 1
-console.log(`toString(): ${linkedlist.toString()}`);
+console.log(`toString(): ${linkedlist.toString()}`); */
