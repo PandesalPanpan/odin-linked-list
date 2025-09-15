@@ -135,6 +135,25 @@ export default class LinkedList {
         return currentNode;
     }
 
+    /* 
+        contains(value)
+        returns true if the value is in the list
+        false if not
+    */
+    contains = (value) => {
+        if (!this.linkedlistHead instanceof Node) throw new Error("Linked List does not have a head to start searching.");
+        // Loop through the linked list and check its value
+        // Loop untils null
+        let currentNode = this.linkedlistHead;
+        while (currentNode != null) {
+            if (currentNode.value == value) return true;
+            currentNode = currentNode.nextNode; 
+        }
+
+        return false;
+
+    }
+
 }
 const linkedlist = new LinkedList();
 
@@ -145,3 +164,5 @@ console.log(`Head: ${linkedlist.linkedlistHead.value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
 console.log(`Popping: ${linkedlist.pop().value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
+console.log(`contains('node2')): ${linkedlist.contains('node2')}`);
+console.log(`contains('node3')): ${linkedlist.contains('node3')}`)
