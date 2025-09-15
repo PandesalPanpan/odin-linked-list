@@ -26,7 +26,7 @@ export default class LinkedList {
         Adds a new node at the beginning
     */
    prepend = (value) => {
-        if (this.linkedlistHead == undefined) {
+        if (!this.linkedlistHead instanceof Node) {
             this.linkedlistHead = new Node(value);
         }
 
