@@ -174,6 +174,24 @@ export default class LinkedList {
         return null;
     } 
 
+    /* 
+        toString prints objects the entire node as string
+        format: ( value ) -> ( value ) -> ( value ) -> null
+    */
+    toString = () => {
+        if (!this.linkedlistHead instanceof Node) throw new Error(`Head is an instance of Node or does not exist`);
+
+        let currentNode = this.linkedlistHead;
+        let result = ""
+        while (currentNode != null) {
+            result += `(${currentNode.value}) -> `; 
+            currentNode = currentNode.nextNode; 
+        }
+
+        result += "null";
+        return result;
+    }
+
 }
 const linkedlist = new LinkedList();
 
@@ -182,9 +200,11 @@ linkedlist.append('node2');
 linkedlist.append('node3');
 console.log(`Head: ${linkedlist.linkedlistHead.value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
+console.log(`toString(): ${linkedlist.toString()}`);
 console.log(`Popping: ${linkedlist.pop().value}`);
 console.log(`Tail: ${linkedlist.tail().value}`);
 console.log(`contains('node2')): ${linkedlist.contains('node2')}`);
 console.log(`contains('node3')): ${linkedlist.contains('node3')}`);
 console.log(`find('node3'): ${linkedlist.find('node3')}`); // null
 console.log(`find('node2'): ${linkedlist.find('node2')}`); // 1
+console.log(`toString(): ${linkedlist.toString()}`);
