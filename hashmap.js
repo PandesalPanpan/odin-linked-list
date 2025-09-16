@@ -115,6 +115,26 @@ export default class HashMap {
         })
         return count;
     }
+
+    /* 
+        clear()
+        removes all entries in the hashmap
+    */
+    clear = () => {
+        // create a new array and reference it as the bucket
+        try {
+            const emptyArray = new Array(this.buckets.length)
+            this.buckets = emptyArray;
+            return true;
+        } catch(error) {
+            throw new Error(`Hashmap clear method caused an error: ${error}`);
+        }
+    }
+
+    /* 
+        keys()
+        returns an array containing all the keys inside the hashmap
+    */
 }
 
 const hashmap = new HashMap();
