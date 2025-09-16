@@ -94,6 +94,27 @@ export default class HashMap {
 
         return isRemoved;
     }
+
+    /* 
+        length()
+        returns the number of stored keys in the hashmap
+        number of stored keys = number of nodes
+    */
+    length = () => {
+        // Loop using forEach in the Bucket array
+        let count = 0;
+        // If current element is a linked list
+        this.buckets.forEach(bucket => {
+            if (bucket instanceof LinkedList) {
+                let currentNode = bucket.linkedlistHead;
+                while (currentNode) {
+                    count++;
+                    currentNode = currentNode.nextNode;
+                }
+            }
+        })
+        return count;
+    }
 }
 
 const hashmap = new HashMap();
