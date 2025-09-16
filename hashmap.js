@@ -46,6 +46,30 @@ export default class HashMap {
         this.buckets[index] = bucketLinkedList;
         return true;
     }
+
+    /* 
+        get(key)
+        returns the value if the key is found
+        returns null if not
+    */
+    get = (key) => {
+        // get the hash of the key
+        const index = this.hash(key);
+        if (index < 0 || index >= this.buckets.length) throw new Error("Trying to access index out of bounds");
+
+        // get the bucket with the hash
+        const bucket = this.buckets[index]; 
+        if (!bucket) return null;
+
+        // get if the node exist
+        const node = bucket.findNodeByKey(key);
+        if (!node) return null;
+
+        // return it
+        return node.value;
+
+        // else return null
+    }
 }
 
 const hashmap = new HashMap();
@@ -54,3 +78,4 @@ console.log(hashmap.hash('Sara'));
 console.log(hashmap.hash('raSa'));;
 hashmap.set('Sara', 'Geronimo');
 hashmap.set('Sara', 'Lagero');
+hashmap.get('Sara');
