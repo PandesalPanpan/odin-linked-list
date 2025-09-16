@@ -131,7 +131,7 @@ export default class LinkedList {
 
         previousNode.nextNode = null;
         this.linkedlistTail = previousNode;
-        
+
         return currentNode;
     }
 
@@ -147,14 +147,31 @@ export default class LinkedList {
         let currentNode = this.linkedlistHead;
         while (currentNode != null) {
             if (currentNode.value == value) return true;
-            currentNode = currentNode.nextNode; 
+            currentNode = currentNode.nextNode;
         }
 
         return false;
 
     }
 
-    
+    /* 
+        findNodeByKey(key)
+        returns the node with matching key
+        returns null if not 
+    */
+    findNodeByKey = (key) => {
+        if (!this.linkedlistHead instanceof Node) throw new Error("Linked List does not have a head to start searching.");
+        
+        let currentNode = this.linkedlistHead;
+        while (currentNode != null) {
+            if (currentNode.key == key) return currentNode;
+            currentNode = currentNode.nextNode;
+        }
+
+        return null;
+    }
+
+
     /* 
         find(value)
         returns the index of a node that has that value
@@ -167,12 +184,12 @@ export default class LinkedList {
         let index = 0;
         while (currentNode != null) {
             if (currentNode.value == value) return index;
-            currentNode = currentNode.nextNode; 
+            currentNode = currentNode.nextNode;
             index++;
         }
 
         return null;
-    } 
+    }
 
     /* 
         toString prints objects the entire node as string
@@ -184,8 +201,8 @@ export default class LinkedList {
         let currentNode = this.linkedlistHead;
         let result = ""
         while (currentNode != null) {
-            result += `( ${currentNode.value} ) -> `; 
-            currentNode = currentNode.nextNode; 
+            result += `( ${currentNode.value} ) -> `;
+            currentNode = currentNode.nextNode;
         }
 
         result += "null";
