@@ -138,11 +138,29 @@ export default class HashMap {
    keys = () => {
         // start an empty array and push every node.key found in it
         const keys = [];
+        this._forEachNode(node => keys.push(node.key));
+        return keys;
+    }
+
+    /* 
+         values()
+         returns all the values inside the hashmap
+    */
+
+    values = () => {
+        const values = [];
+        this._forEachNode(node => {
+            values.push(node.value);
+        })
+        return values;
+    }
+
+    _forEachNode = (callback) => {
         this.buckets.forEach(bucket => {
             if (bucket instanceof LinkedList) {
                 let currentNode = bucket.linkedlistHead;
                 while (currentNode) {
-                    keys.push(currentNode.key)
+                    callback(currentNode);
                     currentNode = currentNode.nextNode;
                 }
             }
