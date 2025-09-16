@@ -7,14 +7,14 @@ export default class LinkedList {
         Method: append(value)
         Add a new node until it finds an undefined
     */
-    append = (value) => {
+    append = (key, value) => {
         if (this.linkedlistHead == undefined) {
-            this.linkedlistHead = new Node(value);
+            this.linkedlistHead = new Node(key, value);
             return this.linkedlistHead;
         }
         // Find the tail node with the next null
         const currentTail = this.tail();
-        currentTail.nextNode = new Node(value);
+        currentTail.nextNode = new Node(key, value);
 
         // Return the created node
         return currentTail.nextNode;
@@ -25,12 +25,12 @@ export default class LinkedList {
         Method: prepend(value)
         Adds a new node at the beginning
     */
-    prepend = (value) => {
+    prepend = (key, value) => {
         if (!this.linkedlistHead instanceof Node) {
-            this.linkedlistHead = new Node(value);
+            this.linkedlistHead = new Node(key, value);
         }
 
-        const newHead = new Node(value, this.linkedlistHead);
+        const newHead = new Node(key, value, this.linkedlistHead);
 
         this.linkedlistHead = newHead;
         return this.linkedlistHead;
