@@ -147,6 +147,19 @@ export default class HashMap {
         return values;
     }
 
+    /* 
+        entries()
+        returns an array with arrays of key:value pairs
+        [[key1, value1], [key2, value2], [key3, value3]...]
+    */
+    entries = () => {
+        const entries = [];
+        this._forEachNode(node => {
+            entries.push([node.key, node.value]);
+        })
+        return entries;
+    }
+
     _forEachNode = (callback) => {
         this.buckets.forEach(bucket => {
             if (bucket instanceof LinkedList) {
