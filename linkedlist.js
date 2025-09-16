@@ -207,7 +207,7 @@ export default class LinkedList {
 
         let previousNode = currentNode;
         let currentNode = currentNode.nextNode;
-        while (!isKeyFound && !currentNode) {
+        while (!isKeyFound && currentNode) {
             if (currentNode.key == key) {
                 isKeyFound = true;
             }
