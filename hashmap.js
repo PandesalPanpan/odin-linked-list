@@ -53,19 +53,15 @@ export default class HashMap {
         returns null if not
     */
     get = (key) => {
-        // get the hash of the key
         const index = this.hash(key);
         if (index < 0 || index >= this.buckets.length) throw new Error("Trying to access index out of bounds");
 
-        // get the bucket with the hash
         const bucket = this.buckets[index]; 
         if (!bucket) return null;
 
-        // get if the node exist
         const node = bucket.findNodeByKey(key);
         if (!node) return null;
 
-        // return it
         return node.value;
 
     }
@@ -76,15 +72,8 @@ export default class HashMap {
         returns false
     */
     has = (key) => {
-        const index = this.hash(key);
-        if (index < 0 || index >= this.buckets.length) throw new Error("Trying to access index out of bounds");
-
-        const bucket = this.buckets[index];
-        if (!bucket) return false;
-
-        const node = bucket.findNodeByKey(key);
-        if (!node) return false;
-
+        const get = this.get(key);
+        if (!get) return false;
         return true;
     }
 }
