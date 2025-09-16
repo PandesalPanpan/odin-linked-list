@@ -76,6 +76,24 @@ export default class HashMap {
         if (!get) return false;
         return true;
     }
+
+    /* 
+        remove(key)
+        return true if the key is found and removed successfully
+        return false if the key is not found or is not succesful
+    */
+    remove = (key) => {
+        const index = this.hash(key);
+        if (index < 0 || index >= this.buckets.length) throw new Error("Trying to access index out of bounds");
+
+        const bucket = this.buckets[index];
+        if (!bucket) return false;
+
+        const isRemoved = bucket.removeByKey(key);
+        if (!isRemoved) return false;
+
+        return isRemoved;
+    }
 }
 
 const hashmap = new HashMap();
