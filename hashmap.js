@@ -104,15 +104,7 @@ export default class HashMap {
         // Loop using forEach in the Bucket array
         let count = 0;
         // If current element is a linked list
-        this.buckets.forEach(bucket => {
-            if (bucket instanceof LinkedList) {
-                let currentNode = bucket.linkedlistHead;
-                while (currentNode) {
-                    count++;
-                    currentNode = currentNode.nextNode;
-                }
-            }
-        })
+        this._forEachNode(node => count++);
         return count;
     }
 
@@ -126,7 +118,7 @@ export default class HashMap {
             const emptyArray = new Array(this.buckets.length)
             this.buckets = emptyArray;
             return true;
-        } catch(error) {
+        } catch (error) {
             throw new Error(`Hashmap clear method caused an error: ${error}`);
         }
     }
