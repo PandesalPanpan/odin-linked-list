@@ -68,7 +68,24 @@ export default class HashMap {
         // return it
         return node.value;
 
-        // else return null
+    }
+
+    /* 
+        has(key)
+        returns true if the key is in the hashmap
+        returns false
+    */
+    has = (key) => {
+        const index = this.hash(key);
+        if (index < 0 || index >= this.buckets.length) throw new Error("Trying to access index out of bounds");
+
+        const bucket = this.buckets[index];
+        if (!bucket) return false;
+
+        const node = bucket.findNodeByKey(key);
+        if (!node) return false;
+
+        return true;
     }
 }
 
@@ -79,3 +96,5 @@ console.log(hashmap.hash('raSa'));;
 hashmap.set('Sara', 'Geronimo');
 hashmap.set('Sara', 'Lagero');
 hashmap.get('Sara');
+console.log(hashmap.has('Sara'));
+console.log(hashmap.has('Nosara'));
