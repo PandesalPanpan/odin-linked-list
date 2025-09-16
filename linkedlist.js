@@ -192,6 +192,37 @@ export default class LinkedList {
     }
 
     /* 
+        removeByKey(key)
+        remove a key entry and adjust the nextNodes
+    */
+    removeByKey = (key) => {
+        if (!this.linkedlistHead instanceof Node) throw new Error(`Head is not an instance of node or does not exist.`);
+
+        // If the key is found in the head, grab the nextNode and set it as head
+        if (this.linkedlistHead.key == key) {
+            const headNextNode = this.linkedlistHead.nextNode;
+            this.linkedlistHead = headNextNode;
+            return true;
+        }
+
+        let previousNode = currentNode;
+        let currentNode = currentNode.nextNode;
+        while (!isKeyFound && !currentNode) {
+            if (currentNode.key == key) {
+                isKeyFound = true;
+            }
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+        }
+
+        if (!isKeyFound) return false;
+
+        // Remove reference to the node that contains the key but keep its nextNode property
+        previousNode.nextNode = currentNode.nextNode;
+        return true;
+    }
+
+    /* 
         toString prints objects the entire node as string
         format: ( value ) -> ( value ) -> ( value ) -> null
     */
